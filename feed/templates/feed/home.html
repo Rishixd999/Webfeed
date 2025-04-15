@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebFeed</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #333;
+            color: white;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin-left: 15px;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        .logout-btn {
+            background: red;
+        }
+
+        .add-news-btn {
+            background: green;
+        }
+
+        .navbar a:hover {
+            opacity: 0.8;
+        }
+
+        /* News Container */
+        .news-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Individual Post */
+        .post {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+
+        .post h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .post p {
+            color: #666;
+        }
+
+        /* Like Button */
+        .like-btn {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .like-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <h2>WebFeed</h2>
+        <div class="nav-links">
+            {% if user.is_authenticated %}
+                <a class="add-news-btn" href="{% url 'add_news' %}">➕ Add News</a>
+                <a class="logout-btn" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Signup</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- News Section -->
+    <div class="news-container">
+        <h1>Latest News</h1>
+        {% for post in posts %}
+            <div class="post">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.content }}</p>
+                <p><a class="like-btn" href="{% url 'like_post' post.id %}">👍 Like</a> ({{ post.like_count }})</p>
+            </div>
+        {% empty %}
+            <p>No news available. Check back later!</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
