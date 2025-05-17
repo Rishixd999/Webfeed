@@ -11,9 +11,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import pymysql
-pymysql.install_as_MySQLdb()
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +25,7 @@ SECRET_KEY = 'django-insecure-e)sxk(tl#8zuum%4r5zadm=acxb9v8j+4l5t)ggmy#k#vu9bi9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['16.171.152.178', 'localhost']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -75,7 +72,18 @@ WSGI_APPLICATION = 'webfeed.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.0/ref
+# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'webfeed_db',
+        'USER': 'root',
+        'PASSWORD': 'Rishi@123',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}
 
 
 # Password validation
