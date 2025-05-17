@@ -72,18 +72,7 @@ WSGI_APPLICATION = 'webfeed.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'webfeed_db',
-        'USER': 'root',
-        'PASSWORD': 'Rishi@123',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    }
-}
+# https://docs.djangoproject.com/en/5.0/ref
 
 
 # Password validation
